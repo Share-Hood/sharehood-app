@@ -61,12 +61,13 @@
             android:text="Cadastrar"/>
 
         <Button
-            android:id="@+id/btrnLoginEsqueciMinhaSenha"
+            android:id="@+id/btnLoginEsqueciMinhaSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/lightGray"
             android:text="Esquici minha senha"
-            android:background="@color/transparent"/>
+            android:background="@color/transparent"
+            android:onClick="goEsqueciMinhaSenha"/>
 
     </LinearLayout>
 
