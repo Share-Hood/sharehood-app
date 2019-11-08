@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".CadastroUsuarioActivity"
     android:background="@color/white">
 
     <LinearLayout
@@ -16,12 +17,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_person"/>
 
         <EditText
-            android:id="@+id/edtTextLoginEmail"
+            android:id="@+id/edtTextCadastroUsuarioNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="Nome"/>
+
+        <EditText
+            android:id="@+id/edtTextCadastroUsuarioEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -33,7 +44,7 @@
 
         <EditText
             style="@style/AppEditText"
-            android:id="@+id/edtTextLoginSenha"
+            android:id="@+id/edtTextCadastroUsuarioSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -42,36 +53,41 @@
             android:textColorHint="@color/colorPrimary"
             android:hint="Senha"/>
 
+        <EditText
+            style="@style/AppEditText"
+            android:id="@+id/edtTextCadastroUsuarioConfirmarSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="Confirmar senha"/>
+
         <Button
-            android:id="@+id/btnLoginEntrar"
+            android:id="@+id/btnCadastroUsuarioCadastrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_corners_primary"
             android:textColor="@color/white"
-            android:text="Entrar"/>
+            android:text="Cadastrar"
+            android:onClick="cadastrar"
+            />
 
         <Button
-            android:id="@+id/btnLoginCadastrar"
+            android:id="@+id/btnCadatroUsuarioCancelar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/colorPrimary"
             android:background="@color/transparent"
             android:shadowDx="0"
             android:shadowDy="0"
-            android:text="Cadastrar"
-            android:onClick="goCadastroUsuario"/>
-
-        <Button
-            android:id="@+id/btnLoginEsqueciMinhaSenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/lightGray"
-            android:text="Esquici minha senha"
-            android:background="@color/transparent"
-            android:onClick="goEsqueciMinhaSenha"/>
+            android:text="Cancelar"
+            android:textColor="@color/colorPrimary"
+            android:onClick="cancelar"/>
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
