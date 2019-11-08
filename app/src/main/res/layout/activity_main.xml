@@ -26,11 +26,13 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:layout_marginBottom="20dp"
+            style="@style/AppEditText"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorPrimary"
             android:hint="Email"/>
 
         <EditText
+            style="@style/AppEditText"
             android:id="@+id/edtTextLoginSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/rounded_corners_primary"
             android:textColor="@color/white"
             android:text="Entrar"/>
 
