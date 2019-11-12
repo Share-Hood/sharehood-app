@@ -7,6 +7,8 @@ class User {
     var email = ""
     var password = ""
 
+    constructor()
+
     constructor(email: String, password: String) {
         this.email = email
         this.password = password

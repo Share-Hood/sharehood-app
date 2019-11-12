@@ -6,6 +6,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.facom.sharehoodapp.model.User
+import com.facom.sharehoodapp.service.UserService
+import io.github.rybalkinsd.kohttp.ext.asString
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class CadastroUsuarioActivity : AppCompatActivity() {
     private lateinit var btnCadastroUsuarioCadastrar: Button
@@ -31,19 +37,46 @@ class CadastroUsuarioActivity : AppCompatActivity() {
 
         if(edtTextCadastroUsuarioNome.text.toString().isEmpty()){
             Toast.makeText(applicationContext, "Informe o nome", Toast.LENGTH_LONG).show();
+            return;
         }
         else if(edtTextCadastroUsuarioEmail.text.toString().isEmpty()){
             Toast.makeText(applicationContext, "Informe o email", Toast.LENGTH_LONG).show();
+            return;
         }
         else if(edtTextCadastroUsuarioSenha.text.toString().isEmpty()){
             Toast.makeText(applicationContext, "Informe a senha", Toast.LENGTH_LONG).show();
+            return;
         }
         else if(edtTextCadastroUsuarioConfirmarSenha.text.toString().isEmpty()){
             Toast.makeText(applicationContext, "Confirme a senha", Toast.LENGTH_LONG).show();
+            return;
         }
-        else if(edtTextCadastroUsuarioSenha != edtTextCadastroUsuarioConfirmarSenha){
+        else if(edtTextCadastroUsuarioSenha.text.toString() != edtTextCadastroUsuarioConfirmarSenha.text.toString()){
             Toast.makeText(applicationContext, "Senhas diferentes", Toast.LENGTH_LONG).show();
             return;
         }
+        var usuario = User()
+        usuario.name = edtTextCadastroUsuarioNome.text.toString()
+        usuario.email = edtTextCadastroUsuarioEmail.text.toString()
+        usuario.password = edtTextCadastroUsuarioSenha.text.toString()
+
+        GlobalScope.launch(context = Dispatchers.Main) {
+            try {
+                val response = UserService.cadastroUsuario(usuario).await()
+                if(response.isSuccessful) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Usuário salvo com sucesso!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    finish()
+                }
+                else Toast.makeText(applicationContext, response.asString(), Toast.LENGTH_LONG).show()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(applicationContext, "Algo inesperado aconteceu, tente novamente mais tarde", Toast.LENGTH_LONG).show()
+            }
+        }
+
     }
 }

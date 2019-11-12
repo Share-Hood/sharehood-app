@@ -21,6 +21,19 @@ class UserService {
                 }
             }
         }
+        fun cadastroUsuario(user: User): Deferred<Response> {
+            return httpPostAsync {
+                host = "sharehood-api.herokuapp.com"
+                path = "/users"
+                body {
+                    json {
+                        "name" to user.name
+                        "email" to user.email
+                        "password" to user.password
+                    }
+                }
+            }
+        }
     }
 
 }
