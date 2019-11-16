@@ -34,6 +34,17 @@ class UserService {
                 }
             }
         }
+        fun esqueciMinhaSenha(email: String): Deferred<Response> {
+            return httpPostAsync {
+                host = "sharehood-api.herokuapp.com"
+                path = "/forgot-password"
+                body {
+                    json {
+                        "email" to email
+                    }
+                }
+            }
+        }
     }
 
 }

@@ -6,4 +6,6 @@
     <color name="transparent">#00D81B60</color>
     <color name="white">#fff</color>
     <color name="lightGray">#a6a6a6a6</color>
+    <color name="success">#1BD162</color>
+    <color name="error">#FA5C4A</color>
 </resources>
