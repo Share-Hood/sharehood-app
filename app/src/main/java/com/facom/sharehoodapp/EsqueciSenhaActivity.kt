@@ -45,6 +45,7 @@ class EsqueciSenhaActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                     btnEsqueciSenhaRecuperar.revertAnimation {
+                        btnEsqueciSenhaRecuperar.background = getDrawable(R.drawable.rounded_corners_primary)
                         finish()
                     }
                 }
@@ -52,6 +53,10 @@ class EsqueciSenhaActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(applicationContext, "Algo inesperado aconteceu, tente novamente mais tarde", Toast.LENGTH_LONG).show()
+            } finally {
+                btnEsqueciSenhaRecuperar.revertAnimation {
+                    btnEsqueciSenhaRecuperar.background = getDrawable(R.drawable.rounded_corners_primary)
+                }
             }
         }
     }

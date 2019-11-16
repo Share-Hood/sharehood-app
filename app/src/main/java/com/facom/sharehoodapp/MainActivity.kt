@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.facom.sharehoodapp.model.User
 import com.facom.sharehoodapp.service.UserService
 import io.github.rybalkinsd.kohttp.ext.asString
@@ -18,10 +19,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var btnEsqueciMinhaSenha: Button
     private lateinit var btnCadastroUsuario: Button
-    private lateinit var btnEntrar: Button
+    private lateinit var btnEntrar: CircularProgressButton
     private lateinit var edtTextLoginEmail: EditText
     private lateinit var edtTextLoginSenha: EditText
-    private lateinit var pBarLogin: ProgressBar
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         btnEntrar = findViewById(R.id.btnLoginEntrar)
         edtTextLoginEmail = findViewById(R.id.edtTextLoginEmail)
         edtTextLoginSenha = findViewById(R.id.edtTextLoginSenha)
-        pBarLogin = findViewById(R.id.pBarLogin)
     }
 
     fun goEsqueciMinhaSenha(view: View) {
@@ -56,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         GlobalScope.launch (context = Dispatchers.Main) {
-            startLoading()
+            btnEntrar.startAnimation()
             try {
                 val user = User(edtTextLoginEmail.text.toString(), edtTextLoginSenha.text.toString())
                 val response = UserService.login(user).await()
@@ -66,19 +65,11 @@ class MainActivity : AppCompatActivity() {
                 e.printStackTrace()
                 Toast.makeText(applicationContext, "Erro ao logar", Toast.LENGTH_LONG).show()
             } finally {
-                stopLoading()
+                btnEntrar.revertAnimation {
+                    btnEntrar.background = getDrawable(R.drawable.rounded_corners_primary)
+                }
             }
         }
-    }
-
-    fun startLoading() {
-        pBarLogin.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        btnEntrar.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0)
-    }
-
-    fun stopLoading() {
-        pBarLogin.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0)
-        btnEntrar.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
     }
 
     fun goToPedidos() {
