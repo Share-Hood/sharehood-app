@@ -54,7 +54,7 @@
             android:onClick="entrar"
             app:spinning_bar_color="@color/white"
             app:spinning_bar_padding="6dp"
-            app:spinning_bar_width="2dp"
+            app:spinning_bar_width="3dp"
             android:layout_gravity="center"/>
 
         <Button

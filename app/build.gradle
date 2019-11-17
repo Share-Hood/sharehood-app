@@ -20,6 +20,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            minifyEnabled false
+            testCoverageEnabled false
+        }
     }
     compileOptions {
         targetCompatibility = "8"
@@ -40,4 +44,5 @@ dependencies {
     implementation 'io.github.rybalkinsd:kohttp:0.11.0'
     implementation 'br.com.simplepass:loading-button-android:2.2.0'
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.beust:klaxon:5.0.1'
 }

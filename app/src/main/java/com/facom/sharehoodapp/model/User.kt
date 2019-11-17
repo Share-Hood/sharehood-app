@@ -1,11 +1,16 @@
 package com.facom.sharehoodapp.model
 
+import com.beust.klaxon.Json
+
 class User {
 
+    @Json(name = "_id")
     var id = ""
     var name = ""
     var email = ""
     var password = ""
+    var cellphone = ""
+    var cpf = ""
 
     constructor()
 
@@ -15,7 +20,7 @@ class User {
     }
 
     override fun toString(): String {
-        return "User(id='$id', name='$name', email='$email', password='$password')"
+        return "User(name='$name', email='$email')"
     }
 
     override fun equals(other: Any?): Boolean {
@@ -28,6 +33,8 @@ class User {
         if (name != other.name) return false
         if (email != other.email) return false
         if (password != other.password) return false
+        if (cellphone != other.cellphone) return false
+        if (cpf != other.cpf) return false
 
         return true
     }
@@ -37,6 +44,8 @@ class User {
         result = 31 * result + name.hashCode()
         result = 31 * result + email.hashCode()
         result = 31 * result + password.hashCode()
+        result = 31 * result + cellphone.hashCode()
+        result = 31 * result + cpf.hashCode()
         return result
     }
 

@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+import com.beust.klaxon.Klaxon
 import com.facom.sharehoodapp.model.User
 import com.facom.sharehoodapp.service.UserService
 import io.github.rybalkinsd.kohttp.ext.asString
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import io.github.rybalkinsd.kohttp.util.Json
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 class MainActivity : AppCompatActivity() {
@@ -54,20 +54,25 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        GlobalScope.launch (context = Dispatchers.Main) {
+        GlobalScope.launch (Dispatchers.Main) {
             btnEntrar.startAnimation()
             try {
                 val user = User(edtTextLoginEmail.text.toString(), edtTextLoginSenha.text.toString())
                 val response = UserService.login(user).await()
-                if(response.isSuccessful) goToPedidos()
+                if(response.isSuccessful) {
+                    launch(Dispatchers.Default) {
+                        val loggedUser = Klaxon().parse<User>(response.asString()!!)
+                        // Salvar usuário no banco
+                        runOnUiThread { goToPedidos() }
+                    }
+                }
                 else Toast.makeText(applicationContext, response.asString(), Toast.LENGTH_LONG).show()
             } catch (e: Exception) {
                 e.printStackTrace()
-                Toast.makeText(applicationContext, "Erro ao logar", Toast.LENGTH_LONG).show()
-            } finally {
                 btnEntrar.revertAnimation {
                     btnEntrar.background = getDrawable(R.drawable.rounded_corners_primary)
                 }
+                Toast.makeText(applicationContext, "Erro ao logar", Toast.LENGTH_LONG).show()
             }
         }
     }
