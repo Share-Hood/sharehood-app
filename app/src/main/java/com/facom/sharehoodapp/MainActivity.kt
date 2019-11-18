@@ -13,6 +13,7 @@ import kotlinx.coroutines.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnEntrar: CircularProgressButton
     private lateinit var edtTextLoginEmail: EditText
     private lateinit var edtTextLoginSenha: EditText
-
+    private lateinit var loggedUser: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         btnEntrar = findViewById(R.id.btnLoginEntrar)
         edtTextLoginEmail = findViewById(R.id.edtTextLoginEmail)
         edtTextLoginSenha = findViewById(R.id.edtTextLoginSenha)
+
+        getLoggedUser()
+        if(loggedUser != null) goToPedidos()
     }
 
     fun goEsqueciMinhaSenha(view: View) {
@@ -60,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 val response = UserService.login(user).await()
                 if(response.isSuccessful) {
                     launch(Dispatchers.Default) {
-                        val loggedUser = Json(JsonConfiguration.Stable).parse(User.serializer(), response.asString()!!)
+                        loggedUser = Json(JsonConfiguration.Stable).parse(User.serializer(), response.asString()!!)
                         database.use {
                             insert(AppValues.USER_TABLE_NAME,
                                 "id" to loggedUser.id,
@@ -91,8 +95,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun goToPedidos() {
-        var i = Intent(this, ListaPedidosActivity::class.java)
+        val i = Intent(this, ListaPedidosActivity::class.java)
         startActivity(i)
         finish()
+    }
+
+    fun getLoggedUser() {
+        database.use {
+            select(AppValues.USER_TABLE_NAME).exec {
+                moveToFirst()
+                loggedUser = User()
+                loggedUser.id = getString(0)
+                loggedUser.name = getString(1)
+                loggedUser.email = getString(2)
+                loggedUser.password = getString(3)
+                loggedUser.cellphone = getString(4)
+                loggedUser.cpf = getString(5)
+            }
+        }
     }
 }

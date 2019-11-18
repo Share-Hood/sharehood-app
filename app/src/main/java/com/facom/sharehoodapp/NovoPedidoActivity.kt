@@ -29,8 +29,12 @@ class NovoPedidoActivity : AppCompatActivity() {
             select(AppValues.USER_TABLE_NAME).exec {
                 moveToFirst()
                 loggedUser = User()
+                loggedUser.id = getString(0)
                 loggedUser.name = getString(1)
                 loggedUser.email = getString(2)
+                loggedUser.password = getString(3)
+                loggedUser.cellphone = getString(4)
+                loggedUser.cpf = getString(5)
             }
         }
     }
