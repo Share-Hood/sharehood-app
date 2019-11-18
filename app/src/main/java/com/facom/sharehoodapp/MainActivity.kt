@@ -64,7 +64,12 @@ class MainActivity : AppCompatActivity() {
                         runOnUiThread { goToPedidos() }
                     }
                 }
-                else Toast.makeText(applicationContext, response.asString(), Toast.LENGTH_LONG).show()
+                else {
+                    Toast.makeText(applicationContext, response.asString(), Toast.LENGTH_LONG).show()
+                    btnEntrar.revertAnimation {
+                        btnEntrar.background = getDrawable(R.drawable.rounded_corners_primary)
+                    }
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
                 btnEntrar.revertAnimation {

@@ -44,4 +44,5 @@ dependencies {
     implementation 'br.com.simplepass:loading-button-android:2.2.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.13.0"
+    implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
 }
