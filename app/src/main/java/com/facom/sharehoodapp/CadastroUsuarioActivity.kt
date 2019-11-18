@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.facom.sharehoodapp.model.User
 import com.facom.sharehoodapp.service.UserService
 import io.github.rybalkinsd.kohttp.ext.asString
@@ -14,9 +15,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class CadastroUsuarioActivity : AppCompatActivity() {
-    private lateinit var btnCadastroUsuarioCadastrar: Button
+    private lateinit var btnCadastroUsuarioCadastrar: CircularProgressButton
     private lateinit var edtTextCadastroUsuarioNome: EditText
     private lateinit var edtTextCadastroUsuarioEmail: EditText
+    private lateinit var edtTextCadastroUsuarioCpf: EditText
+    private lateinit var edtTextCadastroUsuarioCelular: EditText
     private lateinit var edtTextCadastroUsuarioSenha: EditText
     private lateinit var edtTextCadastroUsuarioConfirmarSenha: EditText
 
@@ -26,6 +29,8 @@ class CadastroUsuarioActivity : AppCompatActivity() {
         btnCadastroUsuarioCadastrar = findViewById(R.id.btnCadastroUsuarioCadastrar)
         edtTextCadastroUsuarioNome = findViewById(R.id.edtTextCadastroUsuarioNome)
         edtTextCadastroUsuarioEmail = findViewById(R.id.edtTextCadastroUsuarioEmail)
+        edtTextCadastroUsuarioCpf = findViewById(R.id.edtTextCadastroUsuarioCpf)
+        edtTextCadastroUsuarioCelular = findViewById(R.id.edtTextCadastroUsuarioCelular)
         edtTextCadastroUsuarioSenha = findViewById(R.id.edtTextCadastroUsuarioSenha)
         edtTextCadastroUsuarioConfirmarSenha = findViewById(R.id.edtTextCadastroUsuarioConfirmarSenha)
     }
@@ -55,12 +60,16 @@ class CadastroUsuarioActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Senhas diferentes", Toast.LENGTH_LONG).show();
             return;
         }
+
         var usuario = User()
         usuario.name = edtTextCadastroUsuarioNome.text.toString()
         usuario.email = edtTextCadastroUsuarioEmail.text.toString()
+        usuario.cpf = edtTextCadastroUsuarioCpf.text.toString()
+        usuario.cellphone = edtTextCadastroUsuarioCelular.text.toString()
         usuario.password = edtTextCadastroUsuarioSenha.text.toString()
 
         GlobalScope.launch(context = Dispatchers.Main) {
+            btnCadastroUsuarioCadastrar.startAnimation()
             try {
                 val response = UserService.cadastroUsuario(usuario).await()
                 if(response.isSuccessful) {
@@ -75,6 +84,10 @@ class CadastroUsuarioActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(applicationContext, "Algo inesperado aconteceu, tente novamente mais tarde", Toast.LENGTH_LONG).show()
+            } finally {
+                btnCadastroUsuarioCadastrar.revertAnimation {
+                    btnCadastroUsuarioCadastrar.background = getDrawable(R.drawable.rounded_corners_primary)
+                }
             }
         }
 

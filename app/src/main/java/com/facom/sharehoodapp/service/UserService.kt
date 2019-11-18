@@ -29,6 +29,8 @@ class UserService {
                     json {
                         "name" to user.name
                         "email" to user.email
+                        "cpf" to user.cpf
+                        "cellphone" to user.cellphone
                         "password" to user.password
                     }
                 }

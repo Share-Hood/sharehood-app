@@ -7,87 +7,118 @@
     tools:context=".CadastroUsuarioActivity"
     android:background="@color/white">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="40dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/ic_person"/>
-
-        <EditText
-            android:id="@+id/edtTextCadastroUsuarioNome"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:hint="Nome"/>
+            android:layout_height="match_parent"
+            android:padding="40dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edtTextCadastroUsuarioEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="20dp"
-            style="@style/AppEditText"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:hint="Email"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_person"/>
 
-        <EditText
-            style="@style/AppEditText"
-            android:id="@+id/edtTextCadastroUsuarioSenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:hint="Senha"/>
+            <EditText
+                android:id="@+id/edtTextCadastroUsuarioNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary"
+                android:hint="Nome"/>
 
-        <EditText
-            style="@style/AppEditText"
-            android:id="@+id/edtTextCadastroUsuarioConfirmarSenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:hint="Confirmar senha"/>
+            <EditText
+                android:id="@+id/edtTextCadastroUsuarioEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:layout_marginBottom="20dp"
+                style="@style/AppEditText"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary"
+                android:hint="Email"/>
 
-        <Button
-            android:id="@+id/btnCadastroUsuarioCadastrar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/rounded_corners_primary"
-            android:textColor="@color/white"
-            android:text="Cadastrar"
-            android:onClick="cadastrar"
-            />
+            <EditText
+                android:id="@+id/edtTextCadastroUsuarioCpf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:layout_marginBottom="20dp"
+                style="@style/AppEditText"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary"
+                android:hint="CPF"/>
 
-        <Button
-            android:id="@+id/btnCadatroUsuarioCancelar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@color/transparent"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:text="Cancelar"
-            android:textColor="@color/colorPrimary"
-            android:onClick="cancelar"/>
+            <EditText
+                android:id="@+id/edtTextCadastroUsuarioCelular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:layout_marginBottom="20dp"
+                style="@style/AppEditText"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary"
+                android:hint="Número de celular"/>
 
-    </LinearLayout>
+            <EditText
+                style="@style/AppEditText"
+                android:id="@+id/edtTextCadastroUsuarioSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary"
+                android:hint="Senha"/>
 
+            <EditText
+                style="@style/AppEditText"
+                android:id="@+id/edtTextCadastroUsuarioConfirmarSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary"
+                android:hint="Confirmar senha"/>
+
+            <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                android:id="@+id/btnCadastroUsuarioCadastrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_corners_primary"
+                android:textColor="@color/white"
+                app:spinning_bar_color="@color/white"
+                app:spinning_bar_padding="6dp"
+                app:spinning_bar_width="3dp"
+                android:layout_gravity="center"
+                android:text="Cadastrar"
+                android:onClick="cadastrar"
+                />
+
+            <Button
+                android:id="@+id/btnCadatroUsuarioCancelar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@color/transparent"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:text="Cancelar"
+                android:textColor="@color/colorPrimary"
+                android:onClick="cancelar"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
