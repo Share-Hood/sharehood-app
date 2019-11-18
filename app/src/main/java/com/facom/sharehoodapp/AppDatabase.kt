@@ -18,8 +18,8 @@ class AppDatabase private constructor(ctx: Context) : ManagedSQLiteOpenHelper(ct
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.createTable("User", true,
-            "id" to INTEGER + PRIMARY_KEY + UNIQUE,
+        db.createTable(AppValues.USER_TABLE_NAME, true,
+            "id" to TEXT + PRIMARY_KEY + UNIQUE,
             "name" to TEXT,
             "email" to TEXT + UNIQUE,
             "password" to TEXT,
@@ -28,7 +28,10 @@ class AppDatabase private constructor(ctx: Context) : ManagedSQLiteOpenHelper(ct
         )
     }
 
-    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) { }
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.dropTable(AppValues.USER_TABLE_NAME, true)
+        onCreate(db)
+    }
 }
 
 val Context.database: AppDatabase

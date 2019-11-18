@@ -12,6 +12,7 @@ import io.github.rybalkinsd.kohttp.ext.asString
 import kotlinx.coroutines.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
+import org.jetbrains.anko.db.insert
 
 class MainActivity : AppCompatActivity() {
 
@@ -60,7 +61,16 @@ class MainActivity : AppCompatActivity() {
                 if(response.isSuccessful) {
                     launch(Dispatchers.Default) {
                         val loggedUser = Json(JsonConfiguration.Stable).parse(User.serializer(), response.asString()!!)
-                        // TODO: Salvar usuário no banco SQLite
+                        database.use {
+                            insert(AppValues.USER_TABLE_NAME,
+                                "id" to loggedUser.id,
+                                "name" to loggedUser.name,
+                                "email" to loggedUser.email,
+                                "cpf" to loggedUser.cpf,
+                                "cellphone" to loggedUser.cellphone,
+                                "password" to loggedUser.password
+                            )
+                        }
                         runOnUiThread { goToPedidos() }
                     }
                 }
