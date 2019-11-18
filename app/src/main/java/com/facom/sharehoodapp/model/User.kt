@@ -1,16 +1,20 @@
 package com.facom.sharehoodapp.model
 
-import com.beust.klaxon.Json
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 class User {
 
-    @Json(name = "_id")
+    @SerialName("_id")
     var id = ""
     var name = ""
     var email = ""
     var password = ""
     var cellphone = ""
     var cpf = ""
+    @SerialName("__v")
+    var v = ""
 
     constructor()
 

@@ -4,16 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
-import com.beust.klaxon.Klaxon
 import com.facom.sharehoodapp.model.User
 import com.facom.sharehoodapp.service.UserService
 import io.github.rybalkinsd.kohttp.ext.asString
-import io.github.rybalkinsd.kohttp.util.Json
 import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 
 class MainActivity : AppCompatActivity() {
 
@@ -61,8 +59,8 @@ class MainActivity : AppCompatActivity() {
                 val response = UserService.login(user).await()
                 if(response.isSuccessful) {
                     launch(Dispatchers.Default) {
-                        val loggedUser = Klaxon().parse<User>(response.asString()!!)
-                        // Salvar usuário no banco
+                        val loggedUser = Json(JsonConfiguration.Stable).parse(User.serializer(), response.asString()!!)
+                        // TODO: Salvar usuário no banco SQLite
                         runOnUiThread { goToPedidos() }
                     }
                 }
