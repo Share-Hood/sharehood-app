@@ -11,7 +11,7 @@ class UserService {
     companion object {
         fun login(user: User): Deferred<Response> {
             return httpPostAsync {
-                host = "sharehood-api.herokuapp.com"
+                host = AppValues.API_HOST
                 path = "/login"
                 body {
                     json {
@@ -23,7 +23,7 @@ class UserService {
         }
         fun cadastroUsuario(user: User): Deferred<Response> {
             return httpPostAsync {
-                host = "sharehood-api.herokuapp.com"
+                host = AppValues.API_HOST
                 path = "/users"
                 body {
                     json {
@@ -38,7 +38,7 @@ class UserService {
         }
         fun esqueciMinhaSenha(email: String): Deferred<Response> {
             return httpPostAsync {
-                host = "sharehood-api.herokuapp.com"
+                host = AppValues.API_HOST
                 path = "/forgot-password"
                 body {
                     json {
