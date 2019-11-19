@@ -29,7 +29,6 @@
             android:id="@+id/edtTextObjeto"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:Type="text"
             android:layout_marginBottom="20dp"
             android:textColor="@color/colorPrimary"
             />
@@ -38,7 +37,6 @@
             android:id="@+id/edtTextNovoPedidoTempo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:Type="text"
             android:layout_marginBottom="20dp"
             android:textColor="@color/colorPrimary"
             />
@@ -47,7 +45,6 @@
             android:id="@+id/edtTextPedidoPor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:Type="text"
             android:layout_marginBottom="20dp"
             android:textColor="@color/colorPrimary"
             />
@@ -71,8 +68,8 @@
             android:background="@color/transparent"
             android:shadowDx="0"
             android:shadowDy="0"
-            android:text="Cancelar"
             android:textColor="@color/colorPrimary"
+            android:text="Cancelar"
             android:onClick="cancelar"/>
 
     </LinearLayout>

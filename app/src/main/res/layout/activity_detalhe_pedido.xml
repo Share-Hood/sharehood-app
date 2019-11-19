@@ -30,7 +30,6 @@
         android:id="@+id/edtTextEmprestimoMotivo"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:Type="text"
         android:layout_marginBottom="20dp"
         android:textColor="@color/colorPrimary"
         />
@@ -39,7 +38,6 @@
         android:id="@+id/edtTextNovoPedidoTempo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:Type="text"
         android:layout_marginBottom="20dp"
         android:textColor="@color/colorPrimary"
         />
@@ -48,7 +46,6 @@
         android:id="@+id/edtTextPedidoPor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:Type="text"
         android:layout_marginBottom="20dp"
         android:textColor="@color/colorPrimary"
         />
