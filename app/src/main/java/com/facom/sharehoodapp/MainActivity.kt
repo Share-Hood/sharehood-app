@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnEntrar: CircularProgressButton
     private lateinit var edtTextLoginEmail: EditText
     private lateinit var edtTextLoginSenha: EditText
-    private lateinit var loggedUser: User
+    private var loggedUser: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,12 +67,12 @@ class MainActivity : AppCompatActivity() {
                         loggedUser = Json(JsonConfiguration.Stable).parse(User.serializer(), response.asString()!!)
                         database.use {
                             insert(AppValues.USER_TABLE_NAME,
-                                "id" to loggedUser.id,
-                                "name" to loggedUser.name,
-                                "email" to loggedUser.email,
-                                "cpf" to loggedUser.cpf,
-                                "cellphone" to loggedUser.cellphone,
-                                "password" to loggedUser.password
+                                "id" to loggedUser?.id,
+                                "name" to loggedUser?.name,
+                                "email" to loggedUser?.email,
+                                "cpf" to loggedUser?.cpf,
+                                "cellphone" to loggedUser?.cellphone,
+                                "password" to loggedUser?.password
                             )
                         }
                         runOnUiThread { goToPedidos() }
@@ -103,14 +103,15 @@ class MainActivity : AppCompatActivity() {
     fun getLoggedUser() {
         database.use {
             select(AppValues.USER_TABLE_NAME).exec {
-                moveToFirst()
-                loggedUser = User()
-                loggedUser.id = getString(0)
-                loggedUser.name = getString(1)
-                loggedUser.email = getString(2)
-                loggedUser.password = getString(3)
-                loggedUser.cellphone = getString(4)
-                loggedUser.cpf = getString(5)
+                if(moveToNext()) {
+                    loggedUser = User()
+                    loggedUser?.id = getString(0)
+                    loggedUser?.name = getString(1)
+                    loggedUser?.email = getString(2)
+                    loggedUser?.password = getString(3)
+                    loggedUser?.cellphone = getString(4)
+                    loggedUser?.cpf = getString(5)
+                }
             }
         }
     }
