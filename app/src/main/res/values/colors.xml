@@ -8,4 +8,5 @@
     <color name="lightGray">#a6a6a6a6</color>
     <color name="success">#1BD162</color>
     <color name="error">#FA5C4A</color>
+    <color name="darkGray">#5B6A61</color>
 </resources>
