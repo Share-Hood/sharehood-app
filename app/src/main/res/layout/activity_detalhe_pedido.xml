@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetalhePedidoActivity">
+    tools:context=".DetalhePedidoActivity"
+    android:background="@color/white">
 
 <Toolbar
     android:id="@+id/toolbar"
@@ -18,49 +19,68 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="40dp"
+<ScrollView
     app:layout_constraintTop_toBottomOf="@+id/toolbar"
-    tools:layout_editor_absoluteX="0dp"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/edtTextEmprestimoMotivo"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginBottom="20dp"
-        android:textColor="@color/colorPrimary"
-        />
-
-    <TextView
-        android:id="@+id/edtTextNovoPedidoTempo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textColor="@color/colorPrimary"
-        />
+        android:padding="20dp"
+        android:layout_margin="20dp"
+        tools:layout_editor_absoluteX="0dp"
+        android:orientation="vertical"
+        android:background="@drawable/layout_border">
 
-    <TextView
-        android:id="@+id/edtTextPedidoPor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textColor="@color/colorPrimary"
-        />
+        <TextView
+            android:id="@+id/edtTextEmprestimoNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/darkGray"
+            />
+
+        <TextView
+            android:id="@+id/edtTextEmprestimoMotivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/lightGray"
+            />
+
+        <TextView
+            android:id="@+id/edtTextNovoPedidoTempo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/lightGray"
+            />
+
+        <TextView
+            android:id="@+id/edtTextPedidoPor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/lightGray"
+            />
 
 
-    <Button
-        android:id="@+id/btnNovoEmprestimo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/rounded_corners_primary"
-        android:textColor="@color/white"
-        android:text="Emprestar"
-        />
+        <Button
+            android:id="@+id/btnNovoEmprestimo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_corners_primary"
+            android:textColor="@color/white"
+            android:text="Emprestar"
+            android:layout_marginTop="200dp"
+            />
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

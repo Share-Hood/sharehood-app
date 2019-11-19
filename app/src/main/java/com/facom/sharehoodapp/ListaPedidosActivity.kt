@@ -49,6 +49,7 @@ class ListaPedidosActivity : AppCompatActivity() {
                         val selectedRequest = requests[position]
                         val i = Intent(applicationContext, DetalhePedidoActivity::class.java)
                         i.putExtra(AppValues.EXTRA_DETAIL_REQUEST, selectedRequest)
+                        startActivity(i)
                     }
                 }
             }catch (e: Exception) {
