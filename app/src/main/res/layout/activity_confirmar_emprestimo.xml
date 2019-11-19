@@ -73,7 +73,7 @@
             android:shadowDy="0"
             android:text="Cancelar"
             android:textColor="@color/colorPrimary"
-            android:onClick="Cancelar"/>
+            android:onClick="cancelar"/>
 
     </LinearLayout>
 
