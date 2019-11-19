@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/layout_border"
+    android:padding="40dp"
+    android:layout_marginBottom="50dp">
+
+    <TextView
+        android:id="@+id/txtViewListItemRequestNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Furadeira"
+        android:textSize="20dp"
+        android:textColor="@color/darkGray"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtViewListItemRequestNomePedinte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pafúncio Silveira"
+        android:textSize="15dp"
+        android:textColor="@color/lightGray" />
+
+    <TextView
+        android:id="@+id/txtViewListItemRequestDuracaoDias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Por: 5 dias"
+        android:textSize="15dp"
+        android:textColor="@color/lightGray"
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:id="@+id/txtViewListItemRequestMotivo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eu preciso de uma furadeira para fazer uma reforma na minha casa, vai ser rapidinho, vou usar por volta de…."
+        android:textSize="15dp"
+        android:textColor="@color/lightGray" />
+
+</LinearLayout>

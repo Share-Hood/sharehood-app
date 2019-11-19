@@ -4,4 +4,4 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Request(@SerialName("_id") val id: String, val name: String, val duration: Int, val reason: String, val user: String, @SerialName("__v") val v: String)
+data class Request(@SerialName("_id") val id: String, val name: String, val duration: Int, val reason: String, val user: String, @SerialName("__v") val v: String) : java.io.Serializable

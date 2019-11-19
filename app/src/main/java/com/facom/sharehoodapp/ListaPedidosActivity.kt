@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.facom.sharehoodapp.adapter.RequestAdapter
 import com.facom.sharehoodapp.model.Request
 import com.facom.sharehoodapp.model.User
 import com.facom.sharehoodapp.service.RequestService
@@ -43,7 +44,13 @@ class ListaPedidosActivity : AppCompatActivity() {
                 val response = RequestService.findAll().await()
                 if(response.isSuccessful) {
                     val requests = Json.parseList<Request>(response.asString()!!)
-                    listViewListaPedidos.adapter = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, requests)
+                    listViewListaPedidos.adapter = RequestAdapter(applicationContext, ArrayList(requests))
+                    listViewListaPedidos.setOnItemClickListener { parent, view, position, id ->
+                        val selectedRequest = requests[position]
+                        val i = Intent(applicationContext, DetalhePedidoActivity::class.java)
+                        i.putExtra(AppValues.EXTRA_DETAIL_REQUEST, selectedRequest)
+                        startActivity(i)
+                    }
                 }
             }catch (e: Exception) {
                 e.printStackTrace()
