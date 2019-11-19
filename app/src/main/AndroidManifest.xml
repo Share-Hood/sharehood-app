@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NovoPedidoActivity"></activity>
+        <activity android:name=".ConfirmarEmprestimoActivity"></activity>
+        <activity android:name=".DetalhePedidoActivity" />
+        <activity android:name=".NovoPedidoActivity" />
         <activity android:name=".ListaPedidosActivity" />
         <activity android:name=".CadastroUsuarioActivity" />
         <activity android:name=".EsqueciSenhaActivity" />
