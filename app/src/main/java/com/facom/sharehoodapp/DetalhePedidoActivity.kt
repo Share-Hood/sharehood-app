@@ -1,7 +1,9 @@
 package com.facom.sharehoodapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -32,5 +34,11 @@ class DetalhePedidoActivity : AppCompatActivity() {
             edtTextNovoPedidoTempo.text = "Tempo de empréstimo: ${request.duration} dias"
             edtTextPedidoPor.text = "Pedido por: ${request.user}"
         } else finish()
+    }
+
+    fun goToConfirmaEmprestimo(view: View) {
+        val i = Intent(this, ConfirmarEmprestimoActivity::class.java)
+        i.putExtra(AppValues.EXTRA_DETAIL_REQUEST, request)
+        startActivity(i)
     }
 }

@@ -6,21 +6,31 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.facom.sharehoodapp.model.Request
 
 class ConfirmarEmprestimoActivity : AppCompatActivity() {
-    private lateinit var edtTextObjeto: TextView
-    private lateinit var edtTextNovoPedidoTempo : TextView
-    private lateinit var edtTextPedidoPor : TextView
-    private lateinit var btnNovoEmprestimo : Button
-    private lateinit var btnEmprestimoCancelar : Button
-
-
+    private lateinit var txtViewConfirmaEmprestimoNome: TextView
+    private lateinit var txtViewConfirmaEmprestimoTempo : TextView
+    private lateinit var txtViewConfirmaEmprestimoPara : TextView
+    private lateinit var btnConfirmaEmprestimoConfirmar : Button
+    private lateinit var btnConfirmaEmprestimoCancelar : Button
+    private lateinit var request: Request
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirmar_emprestimo)
-        btnNovoEmprestimo = findViewById(R.id.btnNovoEmprestimo)
-        btnEmprestimoCancelar = findViewById(R.id.btnEmprestimoCancelar)
+        btnConfirmaEmprestimoConfirmar = findViewById(R.id.btnConfirmaEmprestimoConfirmar)
+        btnConfirmaEmprestimoCancelar = findViewById(R.id.btnConfirmaEmprestimoCancelar)
+        txtViewConfirmaEmprestimoNome = findViewById(R.id.txtViewConfirmaEmprestimoNome)
+        txtViewConfirmaEmprestimoTempo = findViewById(R.id.txtViewConfirmaEmprestimoTempo)
+        txtViewConfirmaEmprestimoPara = findViewById(R.id.txtViewConfirmaEmprestimoPara)
+
+        if(intent.hasExtra(AppValues.EXTRA_DETAIL_REQUEST)) {
+            request = intent.getSerializableExtra(AppValues.EXTRA_DETAIL_REQUEST) as Request
+            txtViewConfirmaEmprestimoNome.text = request.name
+            txtViewConfirmaEmprestimoTempo.text = "Tempo de empréstimo: ${request.duration} dias"
+            txtViewConfirmaEmprestimoPara.text = "Emprestando para: ${request.user}"
+        } else finish()
     }
 
     fun cancelar(view: View) {

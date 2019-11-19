@@ -78,6 +78,7 @@
             android:textColor="@color/white"
             android:text="Emprestar"
             android:layout_marginTop="200dp"
+            android:onClick="goToConfirmaEmprestimo"
             />
 
     </LinearLayout>
