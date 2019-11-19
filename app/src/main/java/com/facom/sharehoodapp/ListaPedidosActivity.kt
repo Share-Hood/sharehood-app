@@ -55,7 +55,7 @@ class ListaPedidosActivity : AppCompatActivity() {
 
     }
     fun goToNovoPedido(view: View) {
-        val i = Intent(applicationContext, NovoPedidoActivity::class.java)
+        val i = Intent(applicationContext, HistoricoPedido::class.java)
         startActivity(i)
     }
 }
