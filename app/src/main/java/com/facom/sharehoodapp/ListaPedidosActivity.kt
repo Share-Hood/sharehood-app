@@ -45,6 +45,11 @@ class ListaPedidosActivity : AppCompatActivity() {
                 if(response.isSuccessful) {
                     val requests = Json.parseList<Request>(response.asString()!!)
                     listViewListaPedidos.adapter = RequestAdapter(applicationContext, ArrayList(requests))
+                    listViewListaPedidos.setOnItemClickListener { parent, view, position, id ->
+                        val selectedRequest = requests[position]
+                        val i = Intent(applicationContext, DetalhePedidoActivity::class.java)
+                        i.putExtra(AppValues.EXTRA_DETAIL_REQUEST, selectedRequest)
+                    }
                 }
             }catch (e: Exception) {
                 e.printStackTrace()
