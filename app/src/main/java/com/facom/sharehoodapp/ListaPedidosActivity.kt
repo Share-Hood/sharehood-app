@@ -12,6 +12,7 @@ import com.facom.sharehoodapp.adapter.RequestAdapter
 import com.facom.sharehoodapp.model.Request
 import com.facom.sharehoodapp.model.User
 import com.facom.sharehoodapp.service.RequestService
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.github.rybalkinsd.kohttp.ext.asString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -21,20 +22,33 @@ import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.parseList
-import org.jetbrains.anko.db.MapRowParser
-import org.jetbrains.anko.db.parseSingle
-import org.jetbrains.anko.db.select
-import org.jetbrains.anko.find
+import android.view.MenuItem
+
 
 class ListaPedidosActivity : AppCompatActivity() {
 
     lateinit var pbListaPedidos: ProgressBar
     lateinit var listViewListaPedidos: ListView
+    lateinit var navigationView: BottomNavigationView
+
 
     @ImplicitReflectionSerializer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_pedidos)
+        navigationView = findViewById(R.id.navigationView)
+        navigationView.setOnNavigationItemReselectedListener {
+            when (it.getItemId()) {
+                R.id.nav_sair -> {
+                }
+                R.id.nav_perfil -> {
+                }
+                R.id.nav_historico -> {
+                    goToHistorico(null)
+                }
+            }
+        }
+
 
         pbListaPedidos = findViewById(R.id.pbListaPedidos)
         listViewListaPedidos = findViewById(R.id.listViewListaPedidos)
@@ -61,7 +75,13 @@ class ListaPedidosActivity : AppCompatActivity() {
         }
 
     }
+
     fun goToNovoPedido(view: View) {
+        val i = Intent(applicationContext, NovoPedidoActivity::class.java)
+        startActivity(i)
+    }
+
+    fun goToHistorico(view: View?) {
         val i = Intent(applicationContext, HistoricoPedido::class.java)
         startActivity(i)
     }

@@ -12,12 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-<<<<<<< HEAD
         <activity android:name=".HistoricoPedido"></activity>
-=======
         <activity android:name=".ConfirmarEmprestimoActivity"></activity>
         <activity android:name=".DetalhePedidoActivity" />
->>>>>>> 58b0142fd43bb1419a3b86010e7713f4a04de323
         <activity android:name=".NovoPedidoActivity" />
         <activity android:name=".ListaPedidosActivity" />
         <activity android:name=".CadastroUsuarioActivity" />

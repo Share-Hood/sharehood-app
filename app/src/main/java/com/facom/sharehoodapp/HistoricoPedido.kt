@@ -10,12 +10,12 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
 class HistoricoPedido : AppCompatActivity() {
-  //  private var navigationView: BottomNavigationView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historico_pedido)
 
-        //navigationView = findViewById(R.id.navigationView);
+
     }
 }
