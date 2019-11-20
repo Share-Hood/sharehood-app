@@ -4,15 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
+import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.facom.sharehoodapp.model.Request
 
 class ConfirmarEmprestimoActivity : AppCompatActivity() {
     private lateinit var txtViewConfirmaEmprestimoNome: TextView
     private lateinit var txtViewConfirmaEmprestimoTempo : TextView
     private lateinit var txtViewConfirmaEmprestimoPara : TextView
-    private lateinit var btnConfirmaEmprestimoConfirmar : Button
+    private lateinit var btnConfirmaEmprestimoConfirmar : CircularProgressButton
     private lateinit var btnConfirmaEmprestimoCancelar : Button
     private lateinit var request: Request
 
@@ -35,5 +35,9 @@ class ConfirmarEmprestimoActivity : AppCompatActivity() {
 
     fun cancelar(view: View) {
         finish()
+    }
+
+    fun confirmar(view: View) {
+        btnConfirmaEmprestimoConfirmar.startAnimation()
     }
 }

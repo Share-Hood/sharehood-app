@@ -53,7 +53,7 @@
             android:textColor="@color/lightGray" />
 
 
-        <Button
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/btnConfirmaEmprestimoConfirmar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,7 +61,11 @@
             android:background="@drawable/rounded_corners_primary"
             android:textColor="@color/white"
             android:text="Confirmar"
-            />
+            app:spinning_bar_color="@color/white"
+            app:spinning_bar_padding="6dp"
+            app:spinning_bar_width="3dp"
+            android:layout_gravity="center"
+            android:onClick="confirmar"/>
 
         <Button
             android:id="@+id/btnConfirmaEmprestimoCancelar"
