@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+import com.facom.sharehoodapp.dao.UserDao
 import com.facom.sharehoodapp.model.Request
 import com.facom.sharehoodapp.model.User
 import com.facom.sharehoodapp.service.RequestService
@@ -33,27 +34,13 @@ class NovoPedidoActivity : AppCompatActivity() {
         edtTextNovoPedidoNomeItem = findViewById(R.id.edtTextNovoPedidoNomeItem)
         edtTextNovoPedidoTempo = findViewById(R.id.edtTextNovoPedidoTempo)
         edtTextNovoPedidoMotivo = findViewById(R.id.edtTextNovoPedidoMotivo)
-        getLoggedUser()
+        val loggedUser = UserDao.getLoggedUser(applicationContext)
+        if(loggedUser == null) finish()
+        else this.loggedUser = loggedUser
     }
 
     fun cancelar(view: View) {
         finish()
-    }
-
-    fun getLoggedUser() {
-        database.use {
-            select(AppValues.USER_TABLE_NAME).exec {
-                if(moveToNext()) {
-                    loggedUser = User()
-                    loggedUser?.id = getString(0)
-                    loggedUser?.name = getString(1)
-                    loggedUser?.email = getString(2)
-                    loggedUser?.password = getString(3)
-                    loggedUser?.cellphone = getString(4)
-                    loggedUser?.cpf = getString(5)
-                }
-            }
-        }
     }
 
     fun cadastrar (view: View){

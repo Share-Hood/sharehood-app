@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+import com.facom.sharehoodapp.dao.UserDao
 import com.facom.sharehoodapp.model.User
 import com.facom.sharehoodapp.service.UserService
 import io.github.rybalkinsd.kohttp.ext.asString
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         edtTextLoginEmail = findViewById(R.id.edtTextLoginEmail)
         edtTextLoginSenha = findViewById(R.id.edtTextLoginSenha)
 
-        getLoggedUser()
+        loggedUser = UserDao.getLoggedUser(applicationContext)
         if(loggedUser != null) goToPedidos()
     }
 
@@ -98,21 +99,5 @@ class MainActivity : AppCompatActivity() {
         val i = Intent(this, ListaPedidosActivity::class.java)
         startActivity(i)
         finish()
-    }
-
-    fun getLoggedUser() {
-        database.use {
-            select(AppValues.USER_TABLE_NAME).exec {
-                if(moveToNext()) {
-                    loggedUser = User()
-                    loggedUser?.id = getString(0)
-                    loggedUser?.name = getString(1)
-                    loggedUser?.email = getString(2)
-                    loggedUser?.password = getString(3)
-                    loggedUser?.cellphone = getString(4)
-                    loggedUser?.cpf = getString(5)
-                }
-            }
-        }
     }
 }
