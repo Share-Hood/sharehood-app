@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".PerfilUsuarioActivity"></activity>
         <activity android:name=".HistoricoPedido"></activity>
         <activity android:name=".ConfirmarEmprestimoActivity"></activity>
         <activity android:name=".DetalhePedidoActivity" />

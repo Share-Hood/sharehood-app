@@ -5,6 +5,7 @@ import android.content.Context
 import com.facom.sharehoodapp.AppValues
 import com.facom.sharehoodapp.database
 import com.facom.sharehoodapp.model.User
+import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.select
 
 class UserDao{
@@ -27,6 +28,12 @@ class UserDao{
                 }
             }
             return loggedUser
+        }
+
+        fun logout(context: Context, user: User) {
+            context.database.use {
+                delete(AppValues.USER_TABLE_NAME,  "id = {userID}", "userID" to user.id)
+            }
         }
     }
 

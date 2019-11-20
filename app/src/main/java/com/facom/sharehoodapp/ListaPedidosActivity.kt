@@ -23,6 +23,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.parseList
 import android.view.MenuItem
+import com.facom.sharehoodapp.dao.UserDao
 
 
 class ListaPedidosActivity : AppCompatActivity() {
@@ -30,7 +31,7 @@ class ListaPedidosActivity : AppCompatActivity() {
     lateinit var pbListaPedidos: ProgressBar
     lateinit var listViewListaPedidos: ListView
     lateinit var navigationView: BottomNavigationView
-
+    lateinit var loggedUser: User
 
     @ImplicitReflectionSerializer
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +41,10 @@ class ListaPedidosActivity : AppCompatActivity() {
         navigationView.setOnNavigationItemReselectedListener {
             when (it.getItemId()) {
                 R.id.nav_sair -> {
+                    logout(null)
                 }
                 R.id.nav_perfil -> {
+                    goToPerfil(null)
                 }
                 R.id.nav_historico -> {
                     goToHistorico(null)
@@ -52,6 +55,10 @@ class ListaPedidosActivity : AppCompatActivity() {
 
         pbListaPedidos = findViewById(R.id.pbListaPedidos)
         listViewListaPedidos = findViewById(R.id.listViewListaPedidos)
+
+        val loggedUser = UserDao.getLoggedUser(applicationContext)
+        if(loggedUser == null) finish()
+        else this.loggedUser = loggedUser
 
         GlobalScope.launch(Dispatchers.Main) {
             try {
@@ -84,5 +91,17 @@ class ListaPedidosActivity : AppCompatActivity() {
     fun goToHistorico(view: View?) {
         val i = Intent(applicationContext, HistoricoPedido::class.java)
         startActivity(i)
+    }
+
+    fun goToPerfil(view: View?) {
+        val i = Intent(applicationContext, PerfilUsuarioActivity::class.java)
+        startActivity(i)
+    }
+
+    fun logout(view: View?) {
+        UserDao.logout(applicationContext, loggedUser)
+        val i = Intent(applicationContext, MainActivity::class.java)
+        startActivity(i)
+        finish()
     }
 }
