@@ -9,6 +9,6 @@ data class Request(
     val name: String,
     val duration: Int,
     val reason: String,
-    val user: String,
+    val user: User,
     @SerialName("__v") val v: String
 ) : java.io.Serializable

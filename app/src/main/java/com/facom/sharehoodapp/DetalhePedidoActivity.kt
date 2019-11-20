@@ -32,7 +32,7 @@ class DetalhePedidoActivity : AppCompatActivity() {
             edtTextEmprestimoNome.text = request.name
             edtTextEmprestimoMotivo.text = request.reason
             edtTextNovoPedidoTempo.text = "Tempo de empréstimo: ${request.duration} dias"
-            edtTextPedidoPor.text = "Pedido por: ${request.user}"
+            edtTextPedidoPor.text = "Pedido por: ${request.user.name}"
         } else finish()
     }
 

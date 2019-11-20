@@ -21,7 +21,7 @@ class RequestAdapter (private val context: Context,
 
         val request = getItem(position) as Request
         txtViewListItemRequestNome.text = request.name
-        txtViewListItemRequestNomePedinte.text = request.user
+        txtViewListItemRequestNomePedinte.text = request.user.name
         txtViewListItemRequestDuracaoDias.text = "Por ${request.duration} dias"
         txtViewListItemRequestMotivo.text = request.reason
 

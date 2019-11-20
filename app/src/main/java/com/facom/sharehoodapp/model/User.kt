@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class User {
+class User: java.io.Serializable {
 
     @SerialName("_id")
     var id = ""

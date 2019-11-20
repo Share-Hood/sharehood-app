@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package com.facom.sharehoodapp
 
 import androidx.appcompat.app.AppCompatActivity
@@ -51,7 +53,7 @@ class NovoPedidoActivity : AppCompatActivity() {
             edtTextNovoPedidoNomeItem.text.toString(),
             edtTextNovoPedidoTempo.text.toString().toInt(),
             edtTextNovoPedidoMotivo.text.toString(),
-            loggedUser.id,
+            loggedUser,
             ""
         )
 
