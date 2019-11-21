@@ -9,6 +9,7 @@ class AppValues {
         const val USER_TABLE_NAME = "User"
 
         const val EXTRA_DETAIL_REQUEST = "DETAIL_REQUEST"
+        const val EXTRA_DETAIL_LENDING = "DETAIL_LENDING"
     }
 
 }

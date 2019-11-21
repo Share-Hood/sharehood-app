@@ -30,6 +30,12 @@ class LendingService {
                 path = "/lendings-borrower/${user.id}"
             }
         }
+        fun finalize(lending: Lending): Deferred<Response> {
+            return httpGetAsync {
+                host = AppValues.API_HOST
+                path = "/lending-finalize/${lending.id}"
+            }
+        }
         fun create(lending: Lending): Deferred<Response> {
             return httpPostAsync {
                 host = AppValues.API_HOST

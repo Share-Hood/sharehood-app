@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetalheEmprestimo"
+    android:background="@color/white">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:title="Detalhes do empréstimo"
+        android:titleTextColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_margin="20dp"
+        tools:layout_editor_absoluteX="0dp"
+        android:orientation="vertical"
+        android:background="@drawable/layout_border">
+
+        <TextView
+            android:id="@+id/txtViewEmprestimoNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/darkGray"
+            />
+
+        <TextView
+            android:id="@+id/txtViewEmprestimoMotivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/lightGray"
+            />
+
+        <TextView
+            android:id="@+id/txtViewEmprestimoTempo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/lightGray"
+            />
+
+        <TextView
+            android:id="@+id/txtViewEmprestimoPeidoPor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/lightGray"
+            />
+
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/btnJaPeguei"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_corners_primary"
+            android:textColor="@color/white"
+            android:text="Já Peguei de Volta"
+            android:layout_marginTop="200dp"
+            android:onClick="finalizeLending"
+            app:spinning_bar_color="@color/white"
+            app:spinning_bar_padding="6dp"
+            app:spinning_bar_width="3dp"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.facom.sharehoodapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -43,17 +44,16 @@ class HistoricoEmprestimoActivity : AppCompatActivity() {
             try {
                 val response = LendingService.findAll(loggedUser!!).await()
                 if(response.isSuccessful) {
-//                    Toast.makeText(applicationContext, response.asString(), Toast.LENGTH_LONG).show()
                     val list = Json.parseList<Lending>(response.asString()!!)
                     runOnUiThread {
                         listViewListaEmprestimos.adapter = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, list)
                         listViewListaEmprestimos.adapter = LendingAdapter(applicationContext, ArrayList(list), loggedUser)
-//                        listViewListaEmprestimos.setOnItemClickListener { parent, view, position, id ->
-//                            val selectedRequest = requests[position]
-//                            val i = Intent(applicationContext, DetalhePedidoActivity::class.java)
-//                            i.putExtra(AppValues.EXTRA_DETAIL_REQUEST, selectedRequest)
-//                            startActivity(i)
-//                        }
+                        listViewListaEmprestimos.setOnItemClickListener { parent, view, position, id ->
+                            val selectedItem = list[position]
+                            val i = Intent(applicationContext, DetalheEmprestimo::class.java)
+                            i.putExtra(AppValues.EXTRA_DETAIL_LENDING, selectedItem)
+                            startActivity(i)
+                        }
                     }
                 }
             } catch (e: Exception) {
