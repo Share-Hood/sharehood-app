@@ -33,7 +33,7 @@ class LendingService {
         fun create(lending: Lending): Deferred<Response> {
             return httpPostAsync {
                 host = AppValues.API_HOST
-                path = "/requests"
+                path = "/lendings"
                 body {
                     json {
                         "request" to lending.request.id
