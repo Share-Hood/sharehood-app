@@ -33,7 +33,8 @@
         <ListView
             android:id="@+id/listViewListaPedidos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:dividerHeight="10dp"/>
 
         <ProgressBar
             android:id="@+id/pbListaPedidos"
