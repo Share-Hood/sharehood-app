@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -17,12 +16,9 @@ import io.github.rybalkinsd.kohttp.ext.asString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.selects.select
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.parseList
-import android.view.MenuItem
 import com.facom.sharehoodapp.dao.UserDao
 
 
@@ -52,7 +48,6 @@ class ListaPedidosActivity : AppCompatActivity() {
             }
         }
 
-
         pbListaPedidos = findViewById(R.id.pbListaPedidos)
         listViewListaPedidos = findViewById(R.id.listViewListaPedidos)
 
@@ -60,6 +55,40 @@ class ListaPedidosActivity : AppCompatActivity() {
         if(loggedUser == null) finish()
         else this.loggedUser = loggedUser
 
+        loadList()
+
+    }
+
+    @ImplicitReflectionSerializer
+    override fun onResume() {
+        super.onResume()
+        loadList()
+    }
+
+    fun goToNovoPedido(view: View) {
+        val i = Intent(applicationContext, NovoPedidoActivity::class.java)
+        startActivity(i)
+    }
+
+    fun goToHistorico(view: View?) {
+        val i = Intent(applicationContext, HistoricoEmprestimoActivity::class.java)
+        startActivity(i)
+    }
+
+    fun goToPerfil(view: View?) {
+        val i = Intent(applicationContext, PerfilUsuarioActivity::class.java)
+        startActivity(i)
+    }
+
+    fun logout(view: View?) {
+        UserDao.logout(applicationContext, loggedUser)
+        val i = Intent(applicationContext, MainActivity::class.java)
+        startActivity(i)
+        finish()
+    }
+
+    @ImplicitReflectionSerializer
+    fun loadList() {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val response = RequestService.findAll().await()
@@ -80,28 +109,5 @@ class ListaPedidosActivity : AppCompatActivity() {
                 pbListaPedidos.visibility = View.INVISIBLE
             }
         }
-
-    }
-
-    fun goToNovoPedido(view: View) {
-        val i = Intent(applicationContext, NovoPedidoActivity::class.java)
-        startActivity(i)
-    }
-
-    fun goToHistorico(view: View?) {
-        val i = Intent(applicationContext, HistoricoPedido::class.java)
-        startActivity(i)
-    }
-
-    fun goToPerfil(view: View?) {
-        val i = Intent(applicationContext, PerfilUsuarioActivity::class.java)
-        startActivity(i)
-    }
-
-    fun logout(view: View?) {
-        UserDao.logout(applicationContext, loggedUser)
-        val i = Intent(applicationContext, MainActivity::class.java)
-        startActivity(i)
-        finish()
     }
 }
