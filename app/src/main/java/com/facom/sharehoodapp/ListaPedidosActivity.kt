@@ -89,24 +89,33 @@ class ListaPedidosActivity : AppCompatActivity() {
 
     @ImplicitReflectionSerializer
     fun loadList() {
-        GlobalScope.launch(Dispatchers.Main) {
+        runOnUiThread {
+            listViewListaPedidos.visibility = View.INVISIBLE
+            pbListaPedidos.visibility = View.VISIBLE
+        }
+        GlobalScope.launch(Dispatchers.Default) {
             try {
-                val response = RequestService.findAll().await()
+                var response = RequestService.findAll().await()
                 if(response.isSuccessful) {
                     val requests = Json.parseList<Request>(response.asString()!!)
-                    listViewListaPedidos.adapter = RequestAdapter(applicationContext, ArrayList(requests))
-                    listViewListaPedidos.setOnItemClickListener { parent, view, position, id ->
-                        val selectedRequest = requests[position]
-                        val i = Intent(applicationContext, DetalhePedidoActivity::class.java)
-                        i.putExtra(AppValues.EXTRA_DETAIL_REQUEST, selectedRequest)
-                        startActivity(i)
+                    runOnUiThread {
+                        listViewListaPedidos.adapter = RequestAdapter(applicationContext, ArrayList(requests))
+                        listViewListaPedidos.setOnItemClickListener { parent, view, position, id ->
+                            val selectedRequest = requests[position]
+                            val i = Intent(applicationContext, DetalhePedidoActivity::class.java)
+                            i.putExtra(AppValues.EXTRA_DETAIL_REQUEST, selectedRequest)
+                            startActivity(i)
+                        }
                     }
                 }
             }catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(applicationContext, "Algo deu errado, tente novamente mais tarde", Toast.LENGTH_LONG).show()
             } finally {
-                pbListaPedidos.visibility = View.INVISIBLE
+                runOnUiThread {
+                    pbListaPedidos.visibility = View.INVISIBLE
+                    listViewListaPedidos.visibility = View.VISIBLE
+                }
             }
         }
     }
