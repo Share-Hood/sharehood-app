@@ -26,7 +26,8 @@ class RequestService {
                         "name" to request.name
                         "duration" to request.duration
                         "reason" to request.reason
-                        "user" to request.user                    }
+                        "user" to request.user.id
+                    }
                 }
             }
         }
