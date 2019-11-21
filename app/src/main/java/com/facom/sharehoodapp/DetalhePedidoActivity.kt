@@ -52,5 +52,6 @@ class DetalhePedidoActivity : AppCompatActivity() {
         val i = Intent(this, ConfirmarEmprestimoActivity::class.java)
         i.putExtra(AppValues.EXTRA_DETAIL_REQUEST, request)
         startActivity(i)
+        finish()
     }
 }
