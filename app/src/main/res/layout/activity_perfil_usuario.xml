@@ -4,13 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PerfilUsuarioActivity">
+    tools:context=".PerfilUsuarioActivity"
+    android:background="@color/white">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:title="Perfil"
+        android:titleTextColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="40dp"
-        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:layout_editor_absoluteX="0dp"
         android:orientation="vertical">
 
         <ImageView
@@ -19,75 +32,75 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:src="@drawable/ic_person"/>
+            android:src="@drawable/ic_person" />
 
         <TextView
             android:id="@+id/edtPerfilNome"
+            style="@style/AppEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:layout_marginBottom="20dp"
-            style="@style/AppEditText"
+            android:hint="Nome"
+            android:inputType="text"
             android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:hint="Nome"/>
+            android:textColorHint="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/edtPerfilEmail"
+            style="@style/AppEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
             android:layout_marginBottom="20dp"
-            style="@style/AppEditText"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
             android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:hint="Email"/>
+            android:textColorHint="@color/colorPrimary" />
 
         <TextView
-            style="@style/AppEditText"
             android:id="@+id/edtPerfilSenha"
+            style="@style/AppEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:layout_marginBottom="20dp"
+            android:hint="Senha"
+            android:inputType="textPassword"
             android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:hint="Senha"/>
+            android:textColorHint="@color/colorPrimary" />
 
         <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/btnPerfilEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_corners_primary"
-            android:textColor="@color/white"
-            android:text="Editar"
             android:onClick="editar"
+            android:text="Editar"
+            android:textColor="@color/white"
             app:spinning_bar_color="@color/white"
             app:spinning_bar_padding="6dp"
-            app:spinning_bar_width="3dp"
-            android:layout_gravity="center"/>
+            app:spinning_bar_width="3dp" />
 
         <Button
             android:id="@+id/btnPerfilCancelar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/colorPrimary"
             android:background="@color/transparent"
+            android:onClick="goCancelar"
             android:shadowDx="0"
             android:shadowDy="0"
             android:text="Cancelar"
-            android:onClick="goCancelar"/>
+            android:textColor="@color/colorPrimary" />
 
         <Button
             android:id="@+id/btnPerfilSair"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/lightGray"
-            android:text="Sair"
             android:background="@color/transparent"
-            android:onClick="goSair"/>
+            android:onClick="goSair"
+            android:text="Sair"
+            android:textColor="@color/lightGray" />
 
     </LinearLayout>
 
