@@ -7,16 +7,18 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.facom.sharehoodapp.dao.UserDao
 import com.facom.sharehoodapp.model.Request
+import com.facom.sharehoodapp.model.User
 
 class DetalhePedidoActivity : AppCompatActivity() {
     private lateinit var edtTextEmprestimoNome: TextView
     private lateinit var edtTextEmprestimoMotivo : TextView
     private lateinit var edtTextNovoPedidoTempo : TextView
     private lateinit var edtTextPedidoPor : TextView
-    private lateinit var btnNovoEmprestimo : Button
+    private lateinit var btnEmprestar : Button
     private lateinit var request: Request
-
+    private lateinit var loggedUser: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +27,7 @@ class DetalhePedidoActivity : AppCompatActivity() {
         edtTextEmprestimoMotivo = findViewById(R.id.edtTextEmprestimoMotivo)
         edtTextNovoPedidoTempo = findViewById(R.id.edtTextNovoPedidoTempo)
         edtTextPedidoPor = findViewById(R.id.edtTextPedidoPor)
-        btnNovoEmprestimo = findViewById(R.id.btnNovoEmprestimo)
+        btnEmprestar = findViewById(R.id.btnEmprestar)
 
         if(intent.hasExtra(AppValues.EXTRA_DETAIL_REQUEST)) {
             request = intent.getSerializableExtra(AppValues.EXTRA_DETAIL_REQUEST) as Request
@@ -33,6 +35,16 @@ class DetalhePedidoActivity : AppCompatActivity() {
             edtTextEmprestimoMotivo.text = request.reason
             edtTextNovoPedidoTempo.text = "Tempo de empréstimo: ${request.duration} dias"
             edtTextPedidoPor.text = "Pedido por: ${request.user.name}"
+
+            val loggedUser = UserDao.getLoggedUser(applicationContext)
+            if(loggedUser == null) finish()
+            else this.loggedUser = loggedUser
+
+            if(request.user.id == loggedUser!!.id) {
+                btnEmprestar.isClickable = false
+                btnEmprestar.background = getDrawable(R.drawable.rounded_corners_disabled)
+            }
+
         } else finish()
     }
 
