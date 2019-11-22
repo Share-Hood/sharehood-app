@@ -61,7 +61,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:hint="Senha"
+            android:hint="Mudar senha"
+            android:inputType="textPassword"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary" />
+        <TextView
+            android:id="@+id/edtPerfilConfirmaSenha"
+            style="@style/AppEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:hint="Corfirme  a senha"
             android:inputType="textPassword"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorPrimary" />
@@ -96,10 +106,10 @@
             android:id="@+id/btnPerfilSair"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
+            android:background="@color/cardview_shadow_end_color"
             android:onClick="goSair"
             android:text="Sair"
-            android:textColor="@color/lightGray" />
+            android:textColor="@color/darkGray" />
 
     </LinearLayout>
 
