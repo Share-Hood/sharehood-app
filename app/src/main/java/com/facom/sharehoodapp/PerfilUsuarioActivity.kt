@@ -72,6 +72,8 @@ class PerfilUsuarioActivity : AppCompatActivity() {
         usuario.name = edtPerfilNome.text.toString()
         usuario.email = edtPerfilEmail.text.toString()
         usuario.password = edtPerfilSenha.text.toString()
+        usuario.cpf = null.toString()
+        usuario.cellphone = null.toString()
 
         GlobalScope.launch(context = Dispatchers.Main) {
             try {
